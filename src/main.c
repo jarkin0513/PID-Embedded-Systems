@@ -13,9 +13,6 @@
 #include <stdlib.h>
 #include <avr/sfr_defs.h>
 #include <math.h>
-// #include "LCD_Library-main/defines.h"
-// #include "LCD_Library-main/hd44780.c"
-// #include "LCD_Library-main/lcd.c"
 
 #define SPEED_OF_SOUND_MM_US 0.343f // Speed of sound (mm/uS)
 
@@ -281,7 +278,7 @@ int main(void)
 	{
 		unsigned long current_millis = millis();
 
-		// update_target_water_level();
+		update_target_water_level();
 
 		if (current_millis - previous_millis >= INTERVAL_MS)
 		{
@@ -299,7 +296,6 @@ int main(void)
 				// Update PID controller with setpoint and measured water level
 				PIDController_Update(&pid, target_water_level, measured_water_level, &error_out);
 				float control_output = pid.out;
-				// int control_output = (int)pid.out;
 
 				// When PID output is positive, there is not enough water
 				if (control_output > 1.5)
